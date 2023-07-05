@@ -1,2 +1,4 @@
 # pocket-booth-app
-# Front-end
+# Front-end at client
+
+# Back -end at server 
