@@ -1,14 +1,18 @@
 from flask_sqlalchemy import SQLAlchemy
 
-Class user:
+
+db = SQLAlchemy()
+ 
+
+class user:
 def __init__(self, name):
     self.name = name
     pass
 
-Class Image:
+class Image:
 def __init__ (self, filename=None) :
     pass
 
-Class Friends :
+class Friends :
 # Class for storing friends list and their details
  pass
