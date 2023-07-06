@@ -27,3 +27,5 @@ function UploadForm() {
         </form>
     );
 }
+
+export default UploadForm
