@@ -1,42 +1,24 @@
-import React from "react";
 
-function Gallery() {
-    const items = []; // Assuming you have an array of items
 
+
+function Gallery(){
     return (
         <div>
-            <h1 className="mt-5 text-center main-heading">Pocket Booth App</h1>
+            <h1 className="mt-5 text-centre main heading">Pocket Booth App</h1>
             <div className="menu-tab container">
-                <div className="menu-tab d-flex justify-content-around">
-                    <button className="button">Homepage</button>
-                    <button className="button">Favorite</button>
-                    <button className="button">Private</button>
+                <div className="menu-tab d-flex justify center-around">
+                    <btn className="button">Homepage</btn>
+                    <btn className="button">Favorite</btn>
+                    <btn className="button">Private</btn>
                 </div>
                 <div>
-                    <input type="search" />
-                    <button>Search</button>
+                <input type="search"></input>
+                <btn>search</btn>
                 </div>
             </div>
-            <div className="menu-items container-fluid mt-5">
-                <div className="row">
-                    <div className="col-11 mx-auto">
-                        {items.map((element) => {
-                            const { id, user, image, title } = element;
-                            return (
-                                <div key={id}>
-                                    <a href={`/item/${id}`}>{title}</a><br />
-                                    <div className="col-12 col-md-12 col-lg-4 img-div">
-                                        <img src={image} alt="photo of us" className="img-fluid" />
-                                    </div>
-                                    <p>{user}</p>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-            </div>
+
         </div>
-    );
+    )
 }
 
 export default Gallery;

@@ -1,13 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
 import UploadForm from './Upload';
 import Gallery from './Gallery';
+import Search from './Search';
 
 function App() {
   return (
     <div>
-      <Gallery/>
-      <UploadForm/>
+      <Gallery />
+      <Search />
+      <UploadForm />
     </div>
   );
 }
