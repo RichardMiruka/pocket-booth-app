@@ -3,61 +3,77 @@
 }
 
 body {
-  background-color: #abbfeb;
+  background-color: #f2f6fd;
   text-align: center;
   font-size: 20px;
-  color: white; 
+  color: #333333;
 }
+
 .nav-bar {
   background-color: #282c34;
-  min-height: 15vh;
+  height: 15vh;
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
-  font-size: calc(20px + 3vmin);
+  font-size: 2.5rem;
   color: white;
 }
 
-.menu-tab{
+.menu-tab {
   height: 10vmin;
-  font-size: large;
-  display: flexbox;
-  border: #61dafb;
-  justify-content: left;
-  background-color: brown;
+  font-size: 1.5rem;
+  display: flex;
+  border: 2px solid #61dafb;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: #61dafb;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.uploadoutput{
+.menu-tab:hover {
+  background-color: #519dc4;
+}
+
+.uploadoutput {
   height: 10vmin;
-  font-family: "New Century Schoolbook";
+  font-family: "New Century Schoolbook", serif;
   display: flex;
-  margin-top : 2rem ;
-  flex-direction: center;
+  margin-top: 2rem;
   justify-content: center;
+  align-items: center;
   pointer-events: none;
 }
-.search-container{
+
+.search-container {
   display: flex;
-  flex-direction: center;
-  margin-top : 2rem ;
+  margin-top: 2rem;
   position: relative;
   justify-content: center;
-  pointer-events: none;
 }
-.searchButton{
-  padding:.5em 1em;
-  cursor:pointer;
-  transition: all ease-in-out 0.4s;
-  text-decoration:none;
 
+.searchButton {
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: all ease-in-out 0.4s;
+  text-decoration: none;
+  background-color: #519dc4;
+  color: white;
+  border: none;
+  font-size: 1rem;
 }
+
+.searchButton:hover {
+  background-color: #457ea4;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 
 .App-link {
   color: #61dafb;
