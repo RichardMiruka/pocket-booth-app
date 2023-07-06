@@ -1,4 +1,5 @@
 import './App.css';
+import UseServer from './UseServer';
 
 
 function Gallery() {
@@ -17,6 +18,7 @@ function Gallery() {
             <div className="menu-items container-fluid mt-5">
                 <div className="row">
                     <div className="col-11 mx-auto">
+                        <UseServer/>
                         {items.map((element) => {
                             const { id, user, image, title } = element;
                             return (
