@@ -106,7 +106,6 @@ def create_user():
 
     return jsonify({'message': 'User created successfully'}), 201
 
-
 if __name__ == '__main__':
     app.run()
 
