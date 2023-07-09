@@ -1,37 +1,46 @@
-import {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
-
-// function UseServer(){
-//     url = 'http://127.0.0.1:5000/images'
-//     const [data, setData] = useState([]);
-//     // async function fetchData() 
-//     const response = fetch(url);
-
-//     data = response.json();
-//     console.log("Use Server",response)
-// }
 function UseServer() {
-    const [image, setImage] = useState([]);
-  
-    useEffect(() => {
-      fetch("/images")
-        .then((res) => res.json())
-        .then((result) => {
-          setImage(result.image);
-        });
-    }, []);
-  
-    return (
-      <div>
-        {image.map((imag) => (
-          <div key={imag.id}>
-            <span>{imag.filename}</span>
-            <span>{imag.id}</span>
-          </div>
-        ))}
-      </div>
-    );
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('/users');
+        const jsonData = await response.json();
+        setData(jsonData);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
-export default UseServer
+  return (
+    <div>
+      {/* Display the fetched data */}
+      {data && (
+        <ul>
+          {data.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default UseServer;
