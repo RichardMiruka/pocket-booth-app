@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,make_response
 from flask_migrate import Migrate
+from flask_cors import CORS
 from models import db, User, Image, Friend
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -16,21 +18,27 @@ db.init_app(app)
 def home():
     return 'Welcome to the Pocket Booth App!'
 
-# Route to post an image
 @app.route('/images', methods=['POST'])
 def post_image():
-    data = request.json
+    data = request.get_json()
     filename = data.get('filename')
+    user_id = data.get('user_id')
 
-    if not filename:
-        return jsonify({'error': 'Filename is required'}), 400
+    if not filename or not user_id:
+        return jsonify({'error': 'Filename and user_id are required'}), 400
 
-    image = Image(filename=filename)
+    # Validate and handle file upload
+    # if 'file' not in request.files:
+    #     return jsonify({'error': 'No file provided'}), 400
+
+    # file = request.files['file']
+    # Handle the uploaded file as needed (e.g., save it, process it, etc.)
+
+    image = Image(filename=filename, user_id=user_id)
     db.session.add(image)
     db.session.commit()
 
-    return jsonify({'message': 'Image posted successfully'}), 201
-
+    return make_response(jsonify({'message': 'Image posted successfully'}), 201)
 # Route to delete an image
 @app.route('/images/<int:image_id>', methods=['DELETE'])
 def delete_image(image_id):
@@ -82,7 +90,7 @@ def like_image(image_id):
     image.likes += 1
     db.session.commit()
 
-    return jsonify({'message': 'Image liked successfully'}), 200
+    return jsonify({'message': 'Image liked successfully'}), 200 
 
 # Route to get all users
 @app.route('/users', methods=['GET'])
