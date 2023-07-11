@@ -2,15 +2,18 @@ from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
+from models import User,db, Image, Friend
+from sqlalchemy.exc import SQLAlchemyError
+
 
 app = Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
+migrate = Migrate(app, db, render_as_batch=True)
+db.init_app(app)
 
 @app.route('/')
 def home():
@@ -24,12 +27,16 @@ def post_image():
 
     if not filename:
         return jsonify({'error': 'Filename is required'}), 400
+    
+    try:
+        image = Image(filename, 1)
+        db.session.add(image)
+        db.session.commit()
+        return filename
+    except SQLAlchemyError as e:
+        return str(e)
 
-    image = Image(filename=filename)
-    db.session.add(image)
-    db.session.commit()
-
-    return make_response(jsonify({'message': 'Image posted successfully'}), 201)
+    # return make_response(jsonify({'message': 'Image posted successfully'}), 201)
 
 # Route to delete an image
 @app.route('/images/<int:image_id>', methods=['DELETE'])
@@ -51,6 +58,7 @@ def get_images():
     image_list = [{'id': image.id, 'filename': image.filename} for image in images]
 
     return jsonify(image_list), 200
+
 # Route to get all users
 @app.route('/users', methods=['GET'])
 def get_users():
