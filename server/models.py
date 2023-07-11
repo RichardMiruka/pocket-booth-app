@@ -26,3 +26,4 @@ class Friend(db.Model):
 
     user = db.relationship('User', foreign_keys=[user_id], backref=db.backref('friends'))
     friend = db.relationship('User', foreign_keys=[friend_id])
+
