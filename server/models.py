@@ -19,6 +19,7 @@ class Image(db.Model):
     def __init__(self, filename=None):
         self.filename = filename
 
+
 class Friend(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
