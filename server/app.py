@@ -11,22 +11,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-
-    def __init__(self, name):
-        self.name = name
-
-class Image(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    filename = db.Column(db.String(100), nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-    user = db.relationship('User', backref=db.backref('images', cascade='all, delete-orphan'))
-
-    def __init__(self, filename=None):
-        self.filename = filename
 
 @app.route('/')
 def home():
@@ -67,6 +51,25 @@ def get_images():
     image_list = [{'id': image.id, 'filename': image.filename} for image in images]
 
     return jsonify(image_list), 200
+# Route to get all users
+@app.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    user_list = [{'id': user.id, 'name': user.name} for user in users]
+
+    return jsonify(user_list), 200
+
+# Route to get all friends for a given user
+@app.route('/users/<int:user_id>/friends', methods=['GET'])
+def get_user_friends(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    friends = [{'id': friend.id, 'name': friend.name} for friend in user.friends]
+
+    return jsonify(friends), 200
 
 if __name__ == '__main__':
     app.run()
