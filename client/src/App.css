@@ -39,35 +39,10 @@ body {
 
 .uploadoutput {
   height: 10vmin;
-<<<<<<< HEAD
-  /* font-family: "New Century Schoolbook"; */
-=======
   font-family: "New Century Schoolbook", serif;
->>>>>>> ff76c2443ff445bac3fbde5f8853eb8ae288557e
   display: flex;
   margin-top: 2rem;
   justify-content: center;
-<<<<<<< HEAD
-}
-.search-container{
-  /* display: flex; */
-  /* flex-direction: center; */
-  /* margin-top : 2rem ; */
-  position: relative;
-  justify-content: center;
-  font-size: 22px;
-  color: white;
-  border: 1px;
-  border-radius: 50px;
-  padding: 10px 15px;
-}
-.searchButton{
-  padding:.5em 1em;
-  cursor: pointer;
-  transition: all ease-in-out 0.4s;
-  text-decoration:none;
-  border-radius: 50%;
-=======
   align-items: center;
   pointer-events: none;
 }
@@ -89,7 +64,6 @@ body {
   border: none;
   font-size: 1rem;
 }
->>>>>>> ff76c2443ff445bac3fbde5f8853eb8ae288557e
 
 .searchButton:hover {
   background-color: #457ea4;
