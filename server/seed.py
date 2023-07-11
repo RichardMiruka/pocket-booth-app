@@ -30,5 +30,6 @@ with app.app_context():
     db.session.add_all([friend1, friend2, friend3])
     db.session.commit()
 
+
     
     
