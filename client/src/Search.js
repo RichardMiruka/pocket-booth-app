@@ -8,7 +8,7 @@ function Search() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`your_backend_api_endpoint?query=${query}`);
+      const response = await fetch(`'http://127.0.0.1:5000/users'query=${query}`);
       const data = await response.json();
       setResults(data);
     } catch (error) {

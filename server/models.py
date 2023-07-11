@@ -16,8 +16,9 @@ class Image(db.Model):
 
     user = db.relationship('User', backref=db.backref('images', cascade='all, delete-orphan'))
 
-    def __init__(self, filename=None):
+    def __init__(self, filename=None, user_id=1):
         self.filename = filename
+        self.user_id = user_id
 
 
 class Friend(db.Model):

@@ -13,7 +13,7 @@ function App() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/users")
+    fetch("http://127.0.0.1:5000/images")
       .then((r) => r.json())
       .then((messages) => setMessages(messages));
   }, []);
@@ -22,6 +22,9 @@ function App() {
     setMessages([...messages, newMessage]);
   }
 
+  function handleAddPhotos(newPhotos) {
+    setPhotos([...photos, newPhotos]);
+  }
   // function handleDeleteMessage(id) {
   //   const updatedMessages = messages.filter((message) => message.id !== id);
   //   setMessages(updatedMessages);
@@ -46,7 +49,7 @@ function App() {
     <div>
       <Gallery photos= {displayedPhotos}/>
       <Search search={search} onSearchChange={setSearch}/>
-      <UploadForm />
+      <UploadForm onAddPhotos={handleAddPhotos}/>
       <UseServer />
       <CommentMessage onAddMessage={handleAddMessage} />
     </div>
