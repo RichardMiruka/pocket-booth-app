@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 function UseServer() {
   const [data, setData] = useState([]);
-  // console.log(data)
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  function handleAddMessage(newMessage) {
+    setMessages([...messages, newMessage]);
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -40,6 +44,7 @@ function UseServer() {
             // <li key={item.id}>{item.name}</li>
             <img src={item.filename} alt="image"/>
           ))}
+           <CommentMessage onAddMessage={handleAddMessage} />
         </ul>
       )}
     </div>

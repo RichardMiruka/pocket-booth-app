@@ -8,7 +8,7 @@ import CommentMessage from './NewPhotos';
 
 function App() {
 
-  const [messages, setMessages] = useState([]);
+
   const [photos, setPhotos] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -17,10 +17,6 @@ function App() {
       .then((r) => r.json())
       .then((messages) => setMessages(messages));
   }, []);
-
-  function handleAddMessage(newMessage) {
-    setMessages([...messages, newMessage]);
-  }
 
   function handleAddPhotos(newPhotos) {
     setPhotos([...photos, newPhotos]);
@@ -51,7 +47,6 @@ function App() {
       <Search search={search} onSearchChange={setSearch}/>
       <UploadForm onAddPhotos={handleAddPhotos}/>
       <UseServer />
-      <CommentMessage onAddMessage={handleAddMessage} />
     </div>
   );
 }
