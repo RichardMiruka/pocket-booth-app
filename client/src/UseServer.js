@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import CommentMessage from './NewPhotos';
 
 function UseServer() {
   const [data, setData] = useState([]);

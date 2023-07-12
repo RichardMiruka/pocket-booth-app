@@ -32,6 +32,7 @@ function Search() {
       </ul>
     </div>
   );
-}
+} 
+
 
 export default Search;

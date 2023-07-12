@@ -4,11 +4,11 @@ import UploadForm from './Upload';
 import Gallery from './Gallery';
 import Search from './Search';
 import UseServer from './UseServer';
-import CommentMessage from './NewPhotos';
+
 
 function App() {
 
-
+  const [messages, setMessages] = useState([]);
   const [photos, setPhotos] = useState([]);
   const [search, setSearch] = useState("");
 
