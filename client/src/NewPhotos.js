@@ -32,7 +32,7 @@ function CommentMessage({ currentUser, onAddMessage }) {
         value={body}
         onChange={(e) => setBody(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button onChange= {handleSubmit}   type="submit">Send</button>
     </form>
   );
 }

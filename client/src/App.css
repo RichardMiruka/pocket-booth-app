@@ -46,6 +46,10 @@ body {
   align-items: center;
 }
 
+input {
+  z-index: 2;
+}
+
 .search-container {
   display: flex;
   margin-top: 2rem;
